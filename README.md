@@ -9,7 +9,7 @@ WDBACG0020HCH - 2TB | WDBVHT0060JCH - 6TB
 WDBACG0030HCH - 3TB | WDBVHT0080JCH - 8TB
 
 
-## Информация
+## Документация
 * Quick Installation Guide [[EN]](assets/pdf/MBL&MBLD_QuickInstallationGuide_en.pdf)
 * [My Book Live](https://support-en.wd.com/app/products/product-detail/p/231)
    * Описание продукта [[EN]](assets/pdf/MBL_ProductOverview_en.pdf) [[RU]](assets/pdf/MBL_ProductOverview_ru.pdf)
@@ -17,6 +17,13 @@ WDBACG0030HCH - 3TB | WDBVHT0080JCH - 8TB
 * [My Book Live Duo](https://support-en.wd.com/app/products/product-detail/p/232)
    * Описание продукта [[EN]](assets/pdf/MBLD_ProductOverview_en.pdf) [[RU]](assets/pdf/MBLD_ProductOverview_ru.pdf)
    * Руководство пользователя [[EN]](assets/pdf/MBLD_UserManual_en.pdf) [[RU]](assets/pdf/MBLD_UserManual_ru.pdf)
+
+## Прошивки
+
+Версия | MBL | MBLD
+------ | --- | ----
+02.43.10-048 | [[wdc.com]](http://download.wdc.com/nas/apnc-024310-048-20150507.deb) [[github.com]](debrick/apnc-024310-048-20150507.deb) | [[wdc.com]](http://download.wdc.com/nas/ap2nc-024310-048-20150507.deb)  [[github.com]](debrick/ap2nc-024310-048-20150507.deb)
+
 
 ## Инструкции
 * [Раскирпичивание](debrick)
