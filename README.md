@@ -22,8 +22,8 @@ WDBACG0030HCH - 3TB | WDBVHT0080JCH - 8TB
 
 Версия | MBL | MBLD
 ------ | --- | ----
-02.43.10-048 | [[wdc.com]](http://download.wdc.com/nas/apnc-024310-048-20150507.deb) [[github.com]](debrick/apnc-024310-048-20150507.deb) | [[wdc.com]](http://download.wdc.com/nas/ap2nc-024310-048-20150507.deb)  [[github.com]](debrick/ap2nc-024310-048-20150507.deb)
-
+02.43.10-048 | [[wdc.com]](http://download.wdc.com/nas/apnc-024310-048-20150507.deb)  [[github.com]](debrick/apnc-024310-048-20150507.deb) | [[wdc.com]](http://download.wdc.com/nas/ap2nc-024310-048-20150507.deb)  [[github.com]](debrick/ap2nc-024310-048-20150507.deb)
+02.43.09-038 | [[wdc.com]](http://download.wdc.com/nas/apnc-024309-038-20141208.deb) | [[wdc.com]](http://download.wdc.com/nas/ap2nc-024309-038-20141208.deb)
 
 ## Инструкции
 * [Раскирпичивание](debrick)
