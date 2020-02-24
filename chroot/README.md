@@ -16,7 +16,7 @@
 
 Скачаваем и запускаем в консоле [скрипт](install.sh) автоустановки chroot-среды:
 
-    MyBookLive:~# wget --no-check-certificate https://github.com/FLANKERSPb/MyBookLive/blob/master/chroot/install.sh
+    MyBookLive:~# wget --no-check-certificate https://github.com/FLANKERSPb/MyBookLive/raw/master/chroot/install.sh
     MyBookLive:~# sh ./install.sh
 
 Начнётся установка базового набора файлов дистрибутива **Debian Jessie**, которая может занят от 20 до 40 минут. После чего можно будет установить медиасервер miniDLNA и/или торрент-клиент Transmission и запустить их без перезагрузки устройства.
