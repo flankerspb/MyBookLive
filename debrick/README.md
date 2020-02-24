@@ -2,12 +2,13 @@
 
 Для раскирпичивания нам понадобится:
 
-- Непосредственно [скрипт раскирпичивания](debricker.sh)
-- LiveCD/LiveUSB дистрибутив, например, [Ubuntu](https://ubuntu.com/download/desktop)
-- Последняя прошивка для [My Book Live](https://support-en.wd.com/app/products/product-detail/p/231#WD_downloads) или [My Book Live Duo](https://support-en.wd.com/app/products/product-detail/p/232#WD_downloads)
+- Непосредственно [скрипт раскирпичивания](debricker.sh);
+- LiveCD/LiveUSB дистрибутив, например, [Ubuntu](https://ubuntu.com/download/desktop);
+- Последняя прошивка для [My Book Live](https://support-en.wd.com/app/products/product-detail/p/231#WD_downloads) или [My Book Live Duo](https://support-en.wd.com/app/products/product-detail/p/232#WD_downloads);
  
-> Безопасней всего отключить в ПК все имеющиеся SATA-диски, подключить единственный диск, который будет использоваться в MBL(D) и загрузить Live-дистрибутив.  
-В случае Ubuntu, откройте консоль, где установите недостающий пакет mdadm, скрипт раскирпичивания и последнюю прошивку.
+> Безопасней всего отключить в ПК все имеющиеся SATA-диски, подключить единственный диск, который будет использоваться в MBL(D) и загрузить Live-дистрибутив.
+
+>В случае Ubuntu, откройте консоль, где установите недостающий пакет mdadm, скрипт раскирпичивания и последнюю прошивку.
 
 **Устанавливем mdadm**
 
@@ -17,7 +18,7 @@
 
 **Качаем скрипт раскирпичивания**
 
-    wget http://files.ryzhov-al.ru/WD%20My%20Book%20Live/debricker/debricker.sh
+    wget https://github.com/FLANKERSPb/MyBookLive/blob/master/debrick/debricker.sh
 
 **Качаем и распаковываем последнюю прошивку для My Book Live**
 
@@ -26,8 +27,8 @@
     
 **или для My Book Live Duo**
 
-    wget http://download.wdc.com/nas/apnc-024310-048-20150507.deb
-    dpkg -x ./apnc-024310-048-20150507.deb  ~
+    wget http://download.wdc.com/nas/ap2nc-024310-048-20150507.deb
+    dpkg -x ./ap2nc-024310-048-20150507.deb  ~
 
 Запустив скрипт с параметром `--help` можно получить справку по его работе
 
