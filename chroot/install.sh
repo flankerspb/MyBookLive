@@ -102,7 +102,7 @@ then
 	[ -d /DataVolume/shares/Public/Torrents ] || mkdir /DataVolume/shares/Public/Torrents
 	echo -e $INFO Torrents content will be downloaded to \"Public/Torrents\" share. Installing...
 	chroot $chrootBaseDir apt-get --force-yes -qqy install transmission-daemon
-	$WGET $chrootBaseDir/etc/transmission-daemon/settings.json $projectURL/settings.json
+	$WGET $chrootBaseDir/etc/transmission-daemon/settings.json $projectURL/transmission/settings.json
 	chmod +rw $chrootBaseDir/etc/transmission-daemon/settings.json
 	echo transmission-daemon >> $chrootBaseDir/chroot-services.list
 	echo -e $INFO Transmission is installed.
