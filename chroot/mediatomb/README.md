@@ -19,7 +19,7 @@
     
     (chroot-debian)/# sudo apt-get install mediatomb
     
-При необходимости установливаем пакеты ffmpegthumbnailer и ffmpeg для отображения тумбнейлов:
+Для отображения тумбнейлов можно установить пакеты `ffmpegthumbnailer` и `ffmpeg` :
 
     (chroot-debian)/# sudo apt-get install ffmpegthumbnailer ffmpeg
 
