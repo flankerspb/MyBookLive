@@ -10,11 +10,11 @@
 
 >В случае Ubuntu, откройте консоль, где установите недостающий пакет mdadm, скрипт раскирпичивания и последнюю прошивку.
 
-Устанавливем mdadm:
+Устанавливем mdadm и обновляем wget:
 
     cd ~
     sudo apt-get update
-    sudo apt-get install mdadm
+    sudo apt-get install mdadm wget
 
 Качаем скрипт раскирпичивания:
 
