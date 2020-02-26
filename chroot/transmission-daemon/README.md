@@ -1,3 +1,20 @@
+
+http://192.168.0.105:9091/transmission/web/
+
+https://pcminipro.ru/os/nastrojka-transmission-daemon-settings-json/
+
+https://gregory-gost.ru/domashnij-server-chast-4-nastrojka-transmission-daemon-v-kontejnere-lxc-proxmox-ve/
+
+https://github.com/transmission/transmission/wiki/Scripts
+
+https://forum.openmediavault.org/index.php/Thread/13290-Transmission-Script-to-move-completed-downloads-to-directories-or-how-to-create/
+
+https://github.com/transmission/transmission/wiki/RPC-Protocol-Specification
+https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+
+http://nmt200.ru/hand/newbie/transmission-zapusk-sobstvennykh-skriptov
+
+
 # Установка медиа-сервера MediaTomb в chroot среду
 
 > MediaTomb (свободный сервер UPnP) отсутствует в родных репозиториях Jessie, был удален из репозиториев по причине незакрытой уязвимости, так что используйте дальнейшее руководство на свой страх и риск.
