@@ -9,7 +9,7 @@
 			</accounts>
 		</ui>
 		<name>Movies</name>
-		<udn>uuid:7fab3baf-0957-4b03-8046-46b7652e0038</udn>
+		<udn/>
 		<home>/var/lib/mediatomb</home>
 		<webroot>/usr/share/mediatomb/web</webroot>
 		<storage caching="yes">

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ### For example
-# sh /shares/test/chroot/install.sh
+# sh /shares/Public/chroot/install.sh
 
 INFO="\033[1;36mInfo:\033[0m"
 ERROR="\033[1;31mError:\033[0m"
