@@ -14,7 +14,7 @@
 
     cd ~
     sudo apt-get update
-    sudo apt-get install mdadm
+    sudo apt-get install mdadm wget
 
 Качаем скрипт раскирпичивания:
 
