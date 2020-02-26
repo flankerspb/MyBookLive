@@ -1,128 +1,141 @@
 #!/bin/sh
 
-BOLD="\033[1;33m"
-NORM="\033[0m"
-INFO="$BOLD Info:$NORM"
-ERROR="$BOLD Error:$NORM"
-WARNING="$BOLD Warning:$NORM"
-INPUT="$BOLD => $NORM"
+### For example
+# sh /shares/test/chroot/install.sh
+
+INFO="\033[1;36mInfo:\033[0m"
+ERROR="\033[1;31mError:\033[0m"
+WARNING="\033[1;33mWarning:\033[0m"
+NOTICE="\033[1;33mNotice:\033[0m"
+INPUT="\033[1;37m====>:\033[0m"
+DONEs="\033[1;32m"
+DONEe=":\033[0m"
+DONE="\033[1;32mDone:\033[0m"
+
+#CURR_PATH=$(dirname $0)
+CURR_PATH=$(dirname $(readlink -e $0))
+
+#############################################
+
 if [ -z $1 ]
 then
-	chrootDir=debian
+  CHROOT_NAME=debian
 else
-	chrootDir=$1
+  CHROOT_NAME=$1
 fi
-iSystem=jessie
-chrootBaseDir=/DataVolume/$chrootDir
-debootstrapPkgName=debootstrap_1.0.89_bpo8+1_all.deb
-projectURL=https://github.com/FLANKERSPb/MyBookLive/raw/master/chroot
-isServicesInstalled=no
-WGET="wget --no-check-certificate -q -O"
-echo -e $INFO This script will guide you through the chroot-based services
-echo -e $INFO installation on Western Digital My Book Live \(Duo\) and My Cloud NAS.
-echo -e $INFO The goal is to install Debian $iSystem environment with no interference
-echo -e $INFO with firmware. You will be asked later about which services to install
-echo -en $INPUT Do you wish to continue [y/n]?
+
+CHROOT_DIR=/DataVolume/$CHROOT_NAME
+PACKAGE=debootstrap_1.0.89~bpo8+1_all.deb
+CODE_NAME=jessie
+
+#############################################
+
+echo -e $INFO "This script will guide you through the chroot-based services
+      installation on WD My Book Live \(Duo\) and My Cloud NAS.
+      The goal is to install Debian $CODE_NAME environment with no interference
+      with firmware. You will be asked later about which services to install."
+
+echo -en $INPUT Would you like continue [y/n]?
 read userAnswer
 if [ "$userAnswer" != "y" ]
 then
-	echo -e $INFO Ok then. Exiting.
-	exit 0
+  echo -e $INFO Ok then. Exiting.
+  exit 0
 fi
 
-if [ -e /etc/init.d/chroot_$chrootDir.sh ]
+if [ -e /etc/init.d/chroot_$CHROOT_NAME.sh ]
 then
-	echo -e $ERROR Chroot\'ed services start/stop script detected! Please, remove
-	echo -e $ERROR previous installation or specify destination folder name
-	echo -e $ERROR and run script again with folder name parameter, for example:
-	echo -e $ERROR ./install.sh my_debian
-	exit 1
+  echo -e $ERROR "Chroot\'ed services start/stop script detected! Please, remove
+       previous installation or specify destination folder name
+       and run script again with folder name parameter, for example:
+       install.sh my_debian"
+  exit 1
 fi
-if [ -d $chrootBaseDir ]
+
+if [ -d $CHROOT_DIR ]
 then
-	echo -e $WARNING Previous chroot environment will be moved to $chrootBaseDir.old
-	[ -d $chrootBaseDir.old ] || mkdir $chrootBaseDir.old
-	mv -f $chrootBaseDir/* $chrootBaseDir.old
+  echo -e $WARNING Previous chroot environment will be moved to $CHROOT_DIR.old
+  [ -d $CHROOT_DIR.old ] || mkdir $CHROOT_DIR.old
+  mv -f $CHROOT_DIR/* $CHROOT_DIR.old
 else
-	mkdir $chrootBaseDir
+  mkdir $CHROOT_DIR
 fi
+
 echo -e $INFO Deploying a debootstrap package...
-$WGET /tmp/$debootstrapPkgName $projectURL/$debootstrapPkgName
-dpkg -i /tmp/$debootstrapPkgName
-rm -f /tmp/$debootstrapPkgName
-echo -e $INFO Preparing a new Debian $iSystem chroot file base. Please, be patient,
-echo -e $INFO may takes a long time on low speed connection...
-debootstrap --no-check-gpg --no-check-certificate --variant=minbase --exclude=yaboot,udev,dbus,systemd --include=locales,mc,aptitude,wget,dialog,apt-utils,sysvinit,sysvinit-utils $iSystem $chrootBaseDir http://archive.debian.org/debian/
-echo "share:x:1000:root,www-data,daapd" >> $chrootBaseDir/etc/group
-cat > $chrootBaseDir/usr/sbin/policy-rc.d <<EOF
+dpkg -i $CURR_PATH/$PACKAGE
+echo -e $INFO "Preparing a new Debian $CODE_NAME chroot file base. Please, be patient,
+      may takes a long time on low speed connection..."
+
+debootstrap --no-check-gpg --no-check-certificate --variant=minbase --exclude=yaboot,udev,dbus,systemd --include=locales,mc,aptitude,wget,dialog,apt-utils,sysvinit,sysvinit-utils $CODE_NAME $CHROOT_DIR http://archive.debian.org/debian/
+
+echo "share:x:1000:root,www-data,daapd" >> $CHROOT_DIR/etc/group
+cat > $CHROOT_DIR/usr/sbin/policy-rc.d <<EOF
 #!/bin/sh
 exit 101
 EOF
-chmod a+x $chrootBaseDir/usr/sbin/policy-rc.d
-sed -e "s/# ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/" -e "s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/" $chrootBaseDir/etc/locale.gen >$chrootBaseDir/etc/locale.gen.sed
-mv -f $chrootBaseDir/etc/locale.gen.sed $chrootBaseDir/etc/locale.gen
-chroot $chrootBaseDir locale-gen
-chroot $chrootBaseDir apt-get update > /dev/null 2>&1
-echo -e $INFO A Debian $iSystem chroot environment  installed.
+chmod a+x $CHROOT_DIR/usr/sbin/policy-rc.d
+
+sed -e "s/# ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/" -e "s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/" $CHROOT_DIR/etc/locale.gen > $CHROOT_DIR/etc/locale.gen.sed
+cp -f $CHROOT_DIR/etc/locale.gen.sed $CHROOT_DIR/etc/locale.gen
+chroot $CHROOT_DIR locale-gen
+chroot $CHROOT_DIR apt-get update > /dev/null 2>&1
+echo -e $INFO A Debian $CODE_NAME chroot environment  installed.
+
 echo -e $INFO Now deploying services start script...
-$WGET $chrootBaseDir/chroot_$chrootDir.sh $projectURL/wedro_chroot.sh
-eval sed -i 's,__CHROOT_DIR_PLACEHOLDER__,$chrootBaseDir,g' $chrootBaseDir/chroot_$chrootDir.sh
-chmod +x $chrootBaseDir/chroot_$chrootDir.sh
-touch $chrootBaseDir/chroot-services.list
-$chrootBaseDir/chroot_$chrootDir.sh install
-echo >> $chrootBaseDir/root/.bashrc
-echo PS1=\'\(chroot-$chrootDir\)\\w\# \' >> $chrootBaseDir/root/.bashrc
-$chrootBaseDir/chroot_$chrootDir.sh start
-echo -e $INFO ...finished.
+cp -f $CURR_PATH/template_chroot.sh $CHROOT_DIR/chroot_$CHROOT_NAME.sh
+eval sed -i 's,__CHROOT_DIR_PLACEHOLDER__,$CHROOT_DIR,g' $CHROOT_DIR/chroot_$CHROOT_NAME.sh
+chmod +x $CHROOT_DIR/chroot_$CHROOT_NAME.sh
+touch $CHROOT_DIR/chroot-services.list
+$CHROOT_DIR/chroot_$CHROOT_NAME.sh install
+echo >> $CHROOT_DIR/root/.bashrc
+echo PS1=\'\(chroot-$CHROOT_NAME\)\\w\# \' >> $CHROOT_DIR/root/.bashrc
+$CHROOT_DIR/chroot_$CHROOT_NAME.sh start
+echo -e $INFO chroot environment ready.
 
-echo -en $INPUT Do you wish to install miniDLNA UPnP/DLNA server [y/n]?
+echo -en $INPUT Would you like install services [y/n]?
 read userAnswer
 if [ "$userAnswer" == "y" ]
 then
-	isServicesInstalled=yes
-	echo -e $INFO UPnP/DLNA content will be taken from \"Public/Shared Music\",
-	echo -e $INFO \"Public/Shared Pictures\" and\"Public/Shared Videos\" shares.
-	chroot $chrootBaseDir apt-get --force-yes -qqy install minidlna
-	killall minidlna > /dev/null 2>&1
-	[ -d "/DataVolume/shares/Public/Shared Music" ] || mkdir "/DataVolume/shares/Public/Shared Music"
-	[ -d "/DataVolume/shares/Public/Shared Pictures" ] || mkdir "/DataVolume/shares/Public/Shared Pictures"
-	[ -d "/DataVolume/shares/Public/Shared Videos" ] || mkdir "/DataVolume/shares/Public/Shared Videos"
-	sed -i 's|^media_dir=/var/lib/minidlna|media_dir=A,/mnt/Public/Shared Music\nmedia_dir=P,/mnt/Public/Shared Pictures\nmedia_dir=V,/mnt/Public/Shared Videos|g' $chrootBaseDir/etc/minidlna.conf
-	rm -f $chrootBaseDir/var/lib/minidlna/files.db
-	echo minidlna >> $chrootBaseDir/chroot-services.list
-	echo -e $INFO MiniDLNA is installed.
+  
+  isNeedRestart=no
+  subdirs="$(ls -d $CURR_PATH/*/)"
+  
+  for subdir in $subdirs; do
+    
+    service=$(basename $subdir)
+    installer=$subdir'install.sh'
+    
+    if [ -e $installer ]
+    then
+      
+      echo -en $INPUT Would you like install "\033[1;37m"$service"\033[0m"? [y/n]?
+      read userAnswer
+      if [ "$userAnswer" == "y" ]
+      then
+        sh $installer $CHROOT_DIR
+        echo $service >> $CHROOT_DIR/chroot-services.list
+        echo -e $INFO "\033[1;37m"$service"\033[0m" installed.
+        isNeedRestart=yes
+      else
+        echo -e $INFO "\033[1;37m"$service"\033[0m" installation canceled.
+      fi
+    else
+      echo -e $NOTICE "\033[1;37m"$service"\033[0m" installation script not found!
+    fi
+  done
+
+  if [ "$isNeedRestart" == "yes" ]
+  then
+    echo -en $INPUT Would you like start chroot\'ed services right now [y/n]?
+    read userAnswer
+    if [ "$userAnswer" == "y" ]
+    then
+      /etc/init.d/chroot_$CHROOT_NAME.sh stop
+      sleep 5
+      /etc/init.d/chroot_$CHROOT_NAME.sh start
+    fi
+  fi
+  
 fi
 
-echo -en $INPUT Do you wish to install Transmission BitTorrent client [y/n]?
-read userAnswer
-if [ "$userAnswer" == "y" ]
-then
-	isServicesInstalled=yes
-	[ -d /DataVolume/shares/Public/Torrents ] || mkdir /DataVolume/shares/Public/Torrents
-	echo -e $INFO Torrents content will be downloaded to \"Public/Torrents\" share. Installing...
-	chroot $chrootBaseDir apt-get --force-yes -qqy install transmission-daemon
-	$WGET $chrootBaseDir/etc/transmission-daemon/settings.json $projectURL/transmission/settings.json
-	chmod +rw $chrootBaseDir/etc/transmission-daemon/settings.json
-	echo transmission-daemon >> $chrootBaseDir/chroot-services.list
-	echo -e $INFO Transmission is installed.
-fi
-
-if [ "$isServicesInstalled" == "yes" ]
-then
-	echo -en $INPUT Do you wish to start chroot\'ed services right now [y/n]?
-	read userAnswer
-	if [ "$userAnswer" == "y" ]
-	then
-		/etc/init.d/chroot_$chrootDir.sh stop
-		sleep 5
-		/etc/init.d/chroot_$chrootDir.sh start
-	fi
-fi
-echo -e $INFO Congratulation! Installation finished. You\'ve got a working
-echo -e $INFO Debian $iSystem environment onboard.  You may install any services
-echo -e $INFO you wish, but don\'t forget to add it\'s names to
-echo -e $INFO $chrootBaseDir/chroot-services.list
-echo -e $INFO /etc/init.d/chroot_$chrootDir.sh script is used
-echo -e $INFO to start or stop chroot\'ed services.
-echo -e $INFO Found bug? Please, report us!
-echo -e $INFO https://github.com/FLANKERSPb/MyBookLive/issues
+echo -e $DONEs...finished.$DONEe
