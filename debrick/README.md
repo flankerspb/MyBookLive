@@ -18,7 +18,7 @@
 
 Качаем скрипт раскирпичивания:
 
-    wget https://github.com/FLANKERSPb/MyBookLive/blob/master/debrick/debricker.sh
+    wget https://github.com/FLANKERSPb/MyBookLive/raw/master/debrick/debricker.sh
 
 Качаем и распаковываем последнюю прошивку для My Book Live:
 
