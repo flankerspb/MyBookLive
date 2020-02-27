@@ -148,12 +148,18 @@ function addAudio(obj)
 
 function addVideo(obj)
 {
+    var chain = new Array('Video', 'All Video');
+    //addCdsObject(obj, createContainerChain(chain));
+
     var dir = getRootPath(object_root_path, obj.location);
-    var chain = new Array();
     
-    chain = chain.concat(dir);
+    //if (dir.length > 0)
+    //{
+        chain = new Array();
+        chain = chain.concat(dir);
     
-    addCdsObject(obj, createContainerChain(chain));
+        addCdsObject(obj, createContainerChain(chain));
+    //}
 }
 
 function addWeborama(obj)
