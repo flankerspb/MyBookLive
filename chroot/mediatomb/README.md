@@ -39,23 +39,23 @@
     
 ### Управление и настройка
 
-> Web-интерфейс MediaTomb - http://mybooklive:49152/
+Web-интерфейс MediaTomb - http://mybooklive:49152/
 
-> Команды запуска/остановки/перезапуска MediaTomb:
+Команды запуска/остановки/перезапуска MediaTomb:
 
     (chroot-debian)/# /etc/init.d/mediatomb start
     (chroot-debian)/# /etc/init.d/mediatomb stop
     (chroot-debian)/# /etc/init.d/mediatomb restart
 
 
-> Расположение файла конфигурации MediaTomb:
+Расположение файла конфигурации MediaTomb:
     
     /etc/mediatomb/config.xml
 
-> Расположение файла базы данных MediaTomb:
+Расположение файла базы данных MediaTomb:
     
     /var/lib/mediatomb/mediatomb.db
 
-> Расположение файла импорта MediaTomb:
+Расположение файла импорта MediaTomb:
     
     /usr/share/mediatomb/js/import.js
