@@ -148,18 +148,25 @@ function addAudio(obj)
 
 function addVideo(obj)
 {
-    var chain = new Array('Video', 'All Video');
-    //addCdsObject(obj, createContainerChain(chain));
-
-    var dir = getRootPath(object_root_path, obj.location);
-    
-    //if (dir.length > 0)
-    //{
-        chain = new Array();
-        chain = chain.concat(dir);
-    
-        addCdsObject(obj, createContainerChain(chain));
-    //}
+  var index = 0;
+  var dirs = ['Documental','Films','Movies','Serials'];
+  
+  var path = obj.location.split('/');
+  path.shift();
+  path.pop();
+  
+  for (var i = 0; i < path.length; i++)
+  {
+    if (dirs.indexOf(path[i]) != -1)
+    {
+      index = i;
+      break;
+    }
+  }
+  
+  path.splice(0, index);
+  
+  addCdsObject(obj, createContainerChain(path));
 }
 
 function addWeborama(obj)
