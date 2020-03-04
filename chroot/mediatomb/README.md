@@ -20,25 +20,25 @@
     (chroot-debian)/#
 
 Добавляем репозиторий и ключ к нему:
-    
+
     (chroot-debian)/# echo deb http://www.deb-multimedia.org jessie main non-free >> /etc/apt/sources.list
     (chroot-debian)/# apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5C808C2B65558117
 
  Обновляем информацию о пакетах из репозиториев и устанавливаем MediaTomb:
-    
+
     (chroot-debian)/# apt-get update
     (chroot-debian)/# apt-get install mediatomb
 
 Для отображения превьюшек можно установить пакеты `ffmpegthumbnailer` и `ffmpeg`:
-    
+
     (chroot-debian)/# apt-get ffmpegthumbnailer ffmpeg
 
 Чтобы MediaTomb загружался вместе с системой добавляем в файл `/chroot-services.list` строку `mediatomb`:
 
     (chroot-debian)/# echo mediatomb >> /chroot-services.list
-    
+
 > Не забываем отключить Twonky в веб-интерфейсе MBL(D) в разделе `Settings->Media->Twonky`.
-    
+
 ### Управление и настройка
 
 Web-интерфейс MediaTomb - http://mybooklive:49152/
@@ -51,7 +51,7 @@ Web-интерфейс MediaTomb - http://mybooklive:49152/
 
 
 Расположение файла конфигурации MediaTomb:
-    
+
     /etc/mediatomb/config.xml
 
 Расположение файла базы данных MediaTomb:
@@ -59,5 +59,5 @@ Web-интерфейс MediaTomb - http://mybooklive:49152/
     /var/lib/mediatomb/mediatomb.db
 
 Расположение файла импорта MediaTomb:
-    
+
     /usr/share/mediatomb/js/import.js

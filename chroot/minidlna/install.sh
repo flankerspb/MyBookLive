@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# PID file - /DataVolume/debian/run/minidlna/minidlna.pid
+# DataBase file - /var/cache/minidlna
+
 ###
 # $0 - Full scriptname
 # $1 - $chrootBaseDir
