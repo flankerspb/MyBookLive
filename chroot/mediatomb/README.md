@@ -24,7 +24,7 @@
     (chroot-debian)/# echo deb http://www.deb-multimedia.org jessie main non-free >> /etc/apt/sources.list
     (chroot-debian)/# apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5C808C2B65558117
 
- Обновляем информацию о пакетах из репозиториев и устанавливаем MediaTomb:
+Обновляем информацию о пакетах из репозиториев и устанавливаем MediaTomb:
 
     (chroot-debian)/# apt-get update
     (chroot-debian)/# apt-get install mediatomb
