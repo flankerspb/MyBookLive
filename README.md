@@ -28,5 +28,7 @@ WDBACG0030HCH - 3TB | WDBVHT0080JCH - 8TB
 ## Инструкции
 * [Раскирпичивание](debrick)
 * [Установка chroot](chroot)
-   * [Установка mediatomb](chroot/mediatomb)
-   * [Установка transmission](chroot/transmission)
+   * [MediaTomb](chroot/mediatomb)
+   * [miniDLNA](chroot/minidlna)
+   * [Transmission](chroot/transmission)
+   * [UDPXY](chroot/udpxy)
