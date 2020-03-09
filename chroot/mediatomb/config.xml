@@ -31,8 +31,8 @@
 		<manufacturerURL>redsonic.com</manufacturerURL>
 		<modelNumber>105</modelNumber>
 		<extended-runtime-options>
-			<ffmpegthumbnailer enabled="yes">
-				<thumbnail-size>256</thumbnail-size>
+			<ffmpegthumbnailer enabled="no">
+				<thumbnail-size>128</thumbnail-size>
 				<seek-percentage>5</seek-percentage>
 				<filmstrip-overlay>yes</filmstrip-overlay>
 				<workaround-bugs>no</workaround-bugs>

@@ -35,7 +35,7 @@ echo -e $INFO "This script will guide you through the chroot-based services
       The goal is to install Debian $CODE_NAME environment with no interference
       with firmware. You will be asked later about which services to install."
 
-echo -en $INPUT Would you like continue [y/n]?
+echo -en $INPUT Do you want continue [y/n]?
 read userAnswer
 if [ "$userAnswer" != "y" ]
 then
@@ -92,7 +92,7 @@ echo PS1=\'\(chroot-$CHROOT_NAME\)\\w\# \' >> $CHROOT_DIR/root/.bashrc
 $CHROOT_DIR/chroot_$CHROOT_NAME.sh start
 echo -e $INFO chroot environment ready.
 
-echo -en $INPUT Would you like install services [y/n]?
+echo -en $INPUT Do you want install services [y/n]?
 read userAnswer
 if [ "$userAnswer" == "y" ]
 then
@@ -108,7 +108,7 @@ then
     if [ -e $installer ]
     then
       
-      echo -en $INPUT Would you like install "\033[1;37m"$service"\033[0m"? [y/n]?
+      echo -en $INPUT Do you want install "\033[1;37m"$service"\033[0m"? [y/n]?
       read userAnswer
       if [ "$userAnswer" == "y" ]
       then
@@ -126,7 +126,7 @@ then
 
   if [ "$isNeedRestart" == "yes" ]
   then
-    echo -en $INPUT Would you like start chroot\'ed services right now [y/n]?
+    echo -en $INPUT Do you want start chroot\'ed services right now [y/n]?
     read userAnswer
     if [ "$userAnswer" == "y" ]
     then
