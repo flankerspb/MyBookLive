@@ -2,9 +2,11 @@
 
 ## Установка
 
-Для установки chroot-среды в web-интерфейсе устройства необходимо разрешить SSH доступ.
+Скачиваем [архив репозитория](https://github.com/FLANKERSPb/MyBookLive/archive/master.zip), распаковываем и закидываем на MBL в любую папку шары. Например в `Public`.
+
+Включаем SSH доступ в web-интерфейсе устройства.
 * http://mybooklive/UI/ssh - для My Book Live
-* http://mybookliveduo/UI/ssh - для My Book Live
+* http://mybookliveduo/UI/ssh - для My Book Live DUO
 
 Подключаемся к SSH-консоли устройства, с помощью любого ssh-клиента, например [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Вводим логин и пароль.
 
@@ -14,17 +16,15 @@
 
     MyBookLive:~#
 
-> Скачиваем [архив репозитория](https://github.com/FLANKERSPb/MyBookLive/archive/master.zip), распаковываем и закидываем на MBL в любую папку шары. 
-
-Установка chroot-среды в папку `/DataVolume/debian/` из папки шары `Public` :
+Установливаем chroot-среду:
 
     MyBookLive:~# sh /shares/Public/chroot/install.sh
 
-Начнётся установка базового набора файлов дистрибутива **Debian Jessie**, которая может занят от 20 до 40 минут. После чего можно будет установить медиасервер miniDLNA и/или торрент-клиент Transmission и запустить их без перезагрузки устройства.
+Начнётся установка базового набора файлов дистрибутива **Debian Jessie**, которая может занят от 20 до 40 минут. После чего можно будет установить [медиасервер miniDLNA](minidlna), [медиасервер MediaTomb](mediatomb), [торрент-клиент Transmission](transmission) и/или [UDP-прокси UDPXY](udpxy) и запустить их без перезагрузки устройства.
 
-Скрипт установки прописывает всё необходимое для запуска выбранных сервисов в сhroot-среде. Сервисы, которые будут стартовать при включении My Book Live перечислены в файле `/DataVolume/debian/chroot-services.list`, по одному сервису в строчке.
+Скрипт установки прописывает всё необходимое для запуска выбранных сервисов в сhroot-среде.
 
-Подсказка: в chroot-services.list перечислены имена файлов из `/DataVolume/debian/etc/init.d`, которые необходимо запустить
+> Сервисы, которые необходимо запустить при включении My Book Live перечислены в файле `/DataVolume/debian/chroot-services.list`, по одному сервису в строке. Это имена файлов из папки `/DataVolume/debian/etc/init.d`.
 
 ## Использование
 
