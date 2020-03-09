@@ -14,10 +14,11 @@
 
     MyBookLive:~#
 
-Скачаваем и запускаем в консоле [скрипт](install.sh) автоустановки chroot-среды:
+> Скачиваем [архив репозитория](https://github.com/FLANKERSPb/MyBookLive/archive/master.zip), распаковываем и закидываем на MBL в любую папку шары. 
 
-    MyBookLive:~# wget --no-check-certificate https://github.com/FLANKERSPb/MyBookLive/raw/master/chroot/install.sh
-    MyBookLive:~# sh ./install.sh
+Установка chroot-среды в папку `/DataVolume/debian/` из папки шары `Public` :
+
+    MyBookLive:~# sh /shares/Public/chroot/install.sh
 
 Начнётся установка базового набора файлов дистрибутива **Debian Jessie**, которая может занят от 20 до 40 минут. После чего можно будет установить медиасервер miniDLNA и/или торрент-клиент Transmission и запустить их без перезагрузки устройства.
 
@@ -59,7 +60,7 @@
     /etc/init.d/chroot_debian.sh stop
     /etc/init.d/chroot_debian.sh remove
 
-Перегрузите WD My Book Live и удалите все файлы Debian Wheezy
+Перегрузите WD My Book Live и удалите все файлы Debian Jessie
 
     rm -fr /DataVolume/debian/
 
