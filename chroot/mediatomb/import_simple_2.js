@@ -147,24 +147,17 @@ function addAudio(obj)
 }
 
 function addVideo(obj)
-{
-  var index = 0;
-  var dirs = ['Documental','Films','Movies','Serials','Kids'];
-  
+{  
   var path = obj.location.split('/');
-  path.shift();
   path.pop();
   
-  for (var i = 0; i < path.length; i++)
-  {
-    if (dirs.indexOf(path[i]) != -1)
-    {
-      index = i;
-      break;
-    }
-  }
+  var rootDir = 'Media';
+  var rootIndex = path.indexOf(rootDir);
   
-  path.splice(0, index);
+  if (rootIndex != -1)
+  {
+    path.splice(0, rootIndex + 1);
+  }
   
   addCdsObject(obj, createContainerChain(path));
 }
